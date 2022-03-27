@@ -12,7 +12,7 @@ Example: Accessing the number via the pre-defined argument
 
 You don't need to explicitly give the number for pluralization. The number can be accessed within local messages via pre-defined named arguments {{count}} and/or {{n}}. You can overwrite those pre-defined named arguments if necessary.
 
-### In the following code examples "input" is a string with different pluralization values of "car" or "point". You will find the result of the Pluralize function, which is the proper pluralized value  of the "input", choseen by the second numeric parameter(count)
+### In the following code examples "input" is a string with different pluralization values of "car" or "point". You will find the result of the Pluralize function, which is the proper pluralized value  of the "input", chosen based on the second numeric parameter(count)
 
 
 **Basic Example:** 
