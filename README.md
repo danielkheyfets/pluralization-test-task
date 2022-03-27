@@ -12,14 +12,45 @@ Example: Accessing the number via the pre-defined argument
 
 You don't need to explicitly give the number for pluralization. The number can be accessed within local messages via pre-defined named arguments {{count}} and/or {{n}}. You can overwrite those pre-defined named arguments if necessary.
 
-```typescript
-const example: string = 'no points|one point|{{count}} points'
+### In the following code examples "input" is a string with different pluralization values of "car" or "point". You will find the result of the Pluralize function, which is the proper pluralized value  of the "input", choseen by the second numeric parameter(count)
 
-const zero: string = pluralize(example, 0)
+
+**Basic Example:** 
+
+```typescript
+const input: string = 'no cars|one car|many cars'
+
+const zero: string = pluralize(input, 0/*count*/)
+// output: no cars
+const one: string = pluralize(input, 1/*count*/)
+// output: one car
+const many: string = pluralize(input, 20/*count*/)
+// output: many cars
+```
+
+**Example with count:**
+
+```typescript
+const input: string = 'no points|one point|{{count}} points'
+
+const zero: string = pluralize(input, 0/*count*/)
 // output: no points
-const one: string = pluralize(example, 1)
+const one: string = pluralize(input, 1/*count*/)
 // output: one point
-const many: string = pluralize(example, 10)
+const many: string = pluralize(input, 10/*count*/)
+// output: 10 points
+```
+
+**Example with count alias "n":**
+
+```typescript
+const input: string = 'no points|one point|{{n}} points'
+
+const zero: string = pluralize(input, 0/*count*/)
+// output: no points
+const one: string = pluralize(input, 1/*count*/)
+// output: one point
+const many: string = pluralize(input, 10/*count*/)
 // output: 10 points
 ```
 
@@ -28,33 +59,29 @@ const many: string = pluralize(example, 10)
 ```typescript
 // payload
 const payload = {
-  names: {
-    one: 'point',
-    many: 'points',
-  }
+  equivalentDollarsAmount: 123,
+  param: {
+    nested: 'food',
+  },
 }
 
-const example: string = 'no {{names.many}}|one {{names.one}}|{{count}} {{names.many}}'
+const input: string = 'no money|$1|${{equivalentDollarsAmount}} of {{param.nested}}'
 
-const zero: string = pluralize(example, 0, payload)
-// output: no points
-const one: string = pluralize(example, 1, payload)
-// output: one point
-const many: string = pluralize(example, 10, payload)
-// output: 10 points
+const many: string = pluralize(input, 30/*count*/, payload)
+// output: $123 of food
 ```
 
 ## Bonus: Support mathematical operations like in the following example:
 
 ```typescript
-const example: string = 'today|one day left|{{minus 365 count}} days left'
+const input: string = 'today|one day left|{{minus 365 count}} days left'
 
-const many: string = pluralize(example, 10)
-// output: 355 days left  
+const many: string = pluralize(input, 100/*count*/)
+// output: 265 days left  
 ```
 
 ## Requirements:
-- The logic must be written in Typescript.
+- The logic must be written in Typescript and compiled to the javascript
 
 - You must implement unit tests. Check the tests folder. 
 
