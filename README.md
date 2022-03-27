@@ -38,10 +38,10 @@ const example: string = 'no {{names.many}}|one {{names.one}}|{{count}} {{names.m
 
 const zero: string = pluralize(example, 0, payload)
 // output: no points
-const zero: string = pluralize(example, 1, payload)
+const one: string = pluralize(example, 1, payload)
 // output: one point
-const zero: string = pluralize(example, 10, payload)
-// output: no points
+const many: string = pluralize(example, 10, payload)
+// output: 10 points
 ```
 
 ## Bonus: Support mathematical operations like in the following example:
